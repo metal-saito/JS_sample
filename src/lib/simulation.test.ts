@@ -14,7 +14,7 @@ describe('simulateLifePlan', () => {
     annualInflationRate: 0.015,
   }
 
-  it('generates a timeline covering the entire simulation window', () => {
+  it('シミュレーション期間全体の年次データを生成する', () => {
     const baseYear = 2025
     const { timeline, summary } = simulateLifePlan(baseInput, baseYear)
 
@@ -32,7 +32,7 @@ describe('simulateLifePlan', () => {
     expect(summary.totalContributions).toBeGreaterThan(summary.totalWithdrawals * 0.2)
   })
 
-  it('marks the retirement year within the timeline', () => {
+  it('年表に退職年が含まれることを確認する', () => {
     const baseYear = 2030
     const { timeline } = simulateLifePlan(baseInput, baseYear)
     const retirementRow = timeline.find((entry) => entry.age === baseInput.retirementAge)
@@ -41,7 +41,7 @@ describe('simulateLifePlan', () => {
     expect(retirementRow?.year).toBe(baseYear + (baseInput.retirementAge - baseInput.currentAge))
   })
 
-  it('detects a shortfall when retirement spending is too high', () => {
+  it('退職後の支出が高すぎる場合に不足を検出する', () => {
     const shortfallInput: LifePlanInput = {
       ...baseInput,
       annualRetirementSpending: 12_000_000,
@@ -55,7 +55,7 @@ describe('simulateLifePlan', () => {
     )
   })
 
-  it('applies annual contribution growth while still working', () => {
+  it('就業期間中は毎年の積立増加率を反映する', () => {
     const { timeline } = simulateLifePlan(baseInput, 2025)
 
     const firstYearContribution = timeline[0].contribution
@@ -64,7 +64,7 @@ describe('simulateLifePlan', () => {
     expect(secondYearContribution).toBeGreaterThan(firstYearContribution)
   })
 
-  it('throws an error when retirement age is invalid', () => {
+  it('退職年齢が不正な場合はエラーを投げる', () => {
     const invalidInput: LifePlanInput = {
       ...baseInput,
       retirementAge: 30,

@@ -1,36 +1,37 @@
-# Life Plan Simulator
+# ライフプラン・シミュレーター
 
-## Overview
-This project provides an interactive web application for simulating long-term financial scenarios. Users can adjust life events such as retirement age, annual spending, expected investment returns, and inflation in order to understand how their savings may evolve over time.
+## 概要
+本プロジェクトは、長期的な資産計画を視覚的に検討できる Web アプリケーションです。年齢や退職時期、積立額、想定利回り、インフレ率などを調整し、将来の貯蓄残高と生活費の持続可能性を評価できます。
 
-## Features
-- Interactive form for configuring savings, contributions, and retirement assumptions
-- Year-by-year projection of savings balance including contributions, investment growth, and withdrawals
-- Automatic highlighting of the retirement year and the first year where planned withdrawals are not fully covered
-- Summary view showing total contributions, withdrawals, final balance, and the number of years retirement spending is covered
-- TypeScript-based domain logic with unit tests to guarantee key calculations
+## 特長
+- 積立額や退職後の支出を設定できるインタラクティブな入力フォーム
+- 積立・運用益・引き出し額を年単位で表示する資産推移テーブル
+- 退職年と初めて引き出しが不足する年を自動でハイライト
+- 累計積立額・累計引き出し額・最終残高・退職後に生活費を賄えた年数を一目で確認できるサマリー
+- TypeScript で実装された計算ロジックと Vitest によるユニットテスト
 
-## Getting Started
+## セットアップ
 ```bash
 npm install
 npm run dev
 ```
-The development server runs on Vite. Open the provided URL in your browser to use the simulator.
+Vite の開発サーバーが起動したら、表示された URL をブラウザで開いてシミュレーターを利用できます。
 
-## Available Scripts
-- `npm run dev`: Start the development server
-- `npm run build`: Create an optimized production build
-- `npm run preview`: Preview the production build locally
-- `npm run lint`: Run ESLint checks
-- `npm run test`: Execute unit tests with Vitest
+## 利用可能なスクリプト
+- `npm run dev`: 開発サーバーを起動
+- `npm run build`: 本番ビルドを作成
+- `npm run preview`: 本番ビルドのプレビューを起動
+- `npm run lint`: ESLint による静的解析を実行
+- `npm run test`: Vitest でユニットテストを実行
 
-## Testing
-Unit tests focus on the calculation engine under `src/lib/simulation.ts`. The tests validate:
-- Full timeline generation between the current age and the selected life expectancy
-- Detection of retirement milestones and shortfall scenarios
-- Growth of contributions during working years and validation of input rules
+## テスト
+`src/lib/simulation.ts` に実装された計算エンジンを中心にテストを用意しています。主に以下を検証します。
 
-Run the test suite at any time with:
+- 現在年齢から想定寿命までの年表が生成されること
+- 退職年や生活費不足が発生する年を正しく検出できること
+- 就業期間中の積立増加や入力値検証が期待どおりに動作すること
+
+テストは次のコマンドで実行できます。
 ```bash
 npm run test
 ```
