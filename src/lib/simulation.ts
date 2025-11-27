@@ -20,25 +20,25 @@ export interface LifePlanInput {
 }
 
 export interface LifePlanYearResult {
-  age: number
-  year: number
-  contribution: number
-  investmentGrowth: number
-  withdrawal: number
-  endBalance: number
+  readonly age: number
+  readonly year: number
+  readonly contribution: number
+  readonly investmentGrowth: number
+  readonly withdrawal: number
+  readonly endBalance: number
 }
 
 export interface LifePlanSummary {
-  totalContributions: number
-  totalWithdrawals: number
-  finalBalance: number
-  shortfallYear: number | null
-  yearsFundedAfterRetirement: number
+  readonly totalContributions: number
+  readonly totalWithdrawals: number
+  readonly finalBalance: number
+  readonly shortfallYear: number | null
+  readonly yearsFundedAfterRetirement: number
 }
 
 export interface LifePlanSimulationResult {
-  timeline: LifePlanYearResult[]
-  summary: LifePlanSummary
+  readonly timeline: ReadonlyArray<LifePlanYearResult>
+  readonly summary: LifePlanSummary
 }
 
 /**
@@ -84,7 +84,6 @@ export const simulateLifePlan = (
   let shortfallYear: number | null = null
 
   const totalYears = lifeExpectancyAge - currentAge
-  const retirementYear = baseYear + Math.max(0, retirementAge - currentAge)
 
   for (let offset = 0; offset <= totalYears; offset += 1) {
     const age = currentAge + offset
