@@ -84,7 +84,6 @@ export const simulateLifePlan = (
   let shortfallYear: number | null = null
 
   const totalYears = lifeExpectancyAge - currentAge
-  const retirementYear = baseYear + Math.max(0, retirementAge - currentAge)
 
   for (let offset = 0; offset <= totalYears; offset += 1) {
     const age = currentAge + offset
